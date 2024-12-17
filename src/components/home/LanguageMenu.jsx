@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { observer } from "mobx-react-lite";
+// import { useTranslation } from "react-i18next";
 
 import LanguageIcon from "@mui/icons-material/Language";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -15,6 +16,8 @@ import { language } from "../../states/gloablStates";
 import colors from "./colors";
 
 export default observer(({ arrow }) => {
+  //   const { t, i18n } = useTranslation();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,6 +26,7 @@ export default observer(({ arrow }) => {
 
   const handleChange = (lang) => {
     language.setCurrentLang(lang);
+    // i18n.changeLanguage(language.getCurrentLanguage());
     handleClose();
   };
 

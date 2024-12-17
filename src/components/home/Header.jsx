@@ -49,9 +49,8 @@ export default observer(() => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
+
   const PageMenu = () => {
-    
     return (
       <Box
         sx={{
