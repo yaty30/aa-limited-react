@@ -1,6 +1,7 @@
 const colors = {
   netural: {
     white: "#FFFFFF",
+    black: "#262626",
     50: "#F8FAFC",
     100: "#F1F5F9",
     300: "#D4D4D4", // "#CBD5E",
