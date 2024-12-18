@@ -4,7 +4,7 @@ import { Typography as MuiTypography } from "@mui/material";
 import { observer } from "mobx-react-lite";
 
 import "../../styles/Fonts.css";
-import colors from "../home/colors";
+import colors from "../../styles/colors";
 
 const typographyStyles = {
   display1: {

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Grid2 as Grid } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { observer } from "mobx-react-lite";
-import colors from "./colors";
+import colors from "../../styles/colors";
 
 import Typography from "../ui/Typography";
 

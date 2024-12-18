@@ -13,7 +13,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { language } from "../../states/gloablStates";
 
 // styles
-import colors from "./colors";
+import colors from "../../styles/colors";
 
 export default observer(({ arrow }) => {
   //   const { t, i18n } = useTranslation();

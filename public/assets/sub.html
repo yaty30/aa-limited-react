@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get("status");
+
+        if (status != null) {
+          if (status === "1") {
+            console.log("OK");
+            window.close();
+          } else if (status === "0") {
+            console.log("FAILED");
+          }
+        } else {
+          setTimeout(() => {
+            console.log("first");
+            const val = run();
+            window.location.href = val;
+          }, 3000);
+
+          setTimeout(() => {
+            console.log("second");
+          }, 5000);
+        }
+
+      };
+
+      function run() {
+        return "http://localhost:3000/assets/QR.html";
+      }
+
+      function handleClick() {
+        const value = run();
+        window.location.href = value;
+      }
+    </script>
+
+    <span>to QR Page</span>
+  </body>
+</html>
