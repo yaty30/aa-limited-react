@@ -25,8 +25,11 @@ import ResponsiveMenu from "./ResponsiveMenu";
 // styles
 import { header } from "../../styles/Common";
 import colors from "./colors";
+
+// states
 import { observer } from "mobx-react-lite";
 import { states } from "../../states/gloablStates";
+import { routes } from "../../states/routes";
 
 const pages = ["Contact Us", "Login"];
 const items = ["Home", "About us", "Schools", "Media Highlights", "Help"];
@@ -67,6 +70,9 @@ export default observer(() => {
           <Button
             variant="text"
             key={item}
+            onClick={() => {
+              routes.setCurrentPage(`/${item}`);
+            }}
             sx={{
               mx: 3,
               textTransform: "capitalize",
