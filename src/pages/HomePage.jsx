@@ -7,6 +7,8 @@ import Header from "../components/home/Header";
 import Hero from "../components/home/Hero";
 
 import { observer } from "mobx-react-lite";
+import SearchBar from "../components/home/SearchBar";
+import SchoolList from "../components/home/SchoolList";
 
 export default observer(() => {
   return (
@@ -17,6 +19,12 @@ export default observer(() => {
         </Grid>
         <Grid item size={12}>
           <Hero />
+        </Grid>
+        <Grid item size={12}>
+          <SearchBar />
+        </Grid>
+        <Grid item size={12}>
+          <SchoolList />
         </Grid>
       </Grid>
     </>

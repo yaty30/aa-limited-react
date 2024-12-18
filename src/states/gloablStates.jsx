@@ -50,3 +50,16 @@ export const states = types
   .create({
     responsiveMenuOpen: false,
   });
+
+export const searchSchool = types
+  .model({
+    target: types.string,
+  })
+  .actions((self) => ({
+    setTarget(target) {
+      self.target = target;
+    },
+  }))
+  .create({
+    target: "",
+  });

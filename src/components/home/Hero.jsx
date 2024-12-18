@@ -10,16 +10,26 @@ const backgroundImage = "/assets/images/Banner Background Image.png";
 
 export default observer(() => {
   return (
-    <Box>
-      <img
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: { xs: "auto", md: "620px", lg: "720px" }, // Responsive height
+        backgroundImage: `url("${backgroundImage}")`, // Set the image as background
+        backgroundSize: "cover", // Make the image cover the entire Box
+        backgroundPosition: "center", // Center the image
+        backgroundRepeat: "no-repeat", // Prevent the image from repeating
+        zIndex: 0, // Ensure this is behind other elements
+      }}
+    >
+      {/* <img
         src={backgroundImage}
-        width="100%"
         style={{
           position: "absolute",
           zIndex: 0,
           height: { xs: "auto", md: "620px" },
         }}
-      />
+      /> */}
       {/* Content Box */}
       <Box sx={{ padding: "0 60px" }}>
         <Grid
@@ -57,7 +67,13 @@ export default observer(() => {
                 <Button
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
-                  sx={{ textTransform: "capitalize" }}
+                  sx={{
+                    textTransform: "capitalize",
+                    backgroundColor: colors.primary[700],
+                    height: 56,
+                    fontWeight: 600,
+                    fontSize: 20,
+                  }}
                 >
                   Read More
                 </Button>

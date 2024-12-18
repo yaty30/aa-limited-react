@@ -24,7 +24,7 @@ import ResponsiveMenu from "./ResponsiveMenu";
 
 // styles
 import { header } from "../../styles/Common";
-import colors from "./colors";
+import colors from "../../styles/colors";
 
 // states
 import { observer } from "mobx-react-lite";
@@ -58,7 +58,6 @@ export default observer(() => {
       <Box
         sx={{
           backgroundColor: colors.primary[50],
-          height: "56px",
           width: "100%",
           flex: 1,
           display: "flex",
@@ -79,6 +78,14 @@ export default observer(() => {
               fontWeight: 600,
               fontSize: 20,
               color: colors.netural[800],
+              borderRadius: 0,
+              borderBottom: "2px solid transparent",
+              "&:hover": {
+                color: colors.primary[700],
+                borderBottomColor: colors.primary[600],
+                backgroundColor: "transparent",
+                height: "auto",
+              },
             }}
           >
             {item}
