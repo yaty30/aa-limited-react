@@ -1,0 +1,64 @@
+.school-list {
+  opacity: 0;
+  animation: schoolListFadeIn 1.6s ease-in-out forwards;
+  animation-delay: 0.8s;
+}
+
+.header-fade-in {
+  opacity: 0;
+  animation: headerFadeIn 1.5s ease-in-out forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes schoolListFadeIn {
+  0% {
+    transform: translateY(120px); /* Start 28px lower */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+  }
+}
+
+@keyframes headerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeIn {
+  0% {
+    transform: translateY(120px); /* Start 28px lower */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+  }
+}
+
+@keyframes searchBarFadeIn {
+  0% {
+    transform: translateY(120px); /* Start 28px lower */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundStartImageFadeIn {
+  0% {
+    transform: translateY(120px); /* Start 28px lower */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+  }
+}

@@ -7,7 +7,7 @@ import Header from "../components/home/Header";
 import Hero from "../components/home/Hero";
 
 import { observer } from "mobx-react-lite";
-import SearchBar from "../components/home/SearchBar";
+import SearchBar from "../components/home/Search";
 import SchoolList from "../components/home/SchoolList";
 import Footer from "../components/home/Footer";
 import MyList from "../components/home/MyList";

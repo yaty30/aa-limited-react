@@ -16,9 +16,12 @@ export const schools = types
   .model({
     list: types.array(schoolList),
     currentListLength: types.number,
+    searchTarget: types.string,
   })
   .actions((self) => ({
     updateList(data) {
+      // self.list.clear();
+
       data.forEach((item) => {
         const lastUpdate = item.properties["Last_Updated_Date___最後更新日期"];
         const converted = {
@@ -31,18 +34,42 @@ export const schools = types
         self.list.push(converted);
       });
 
-      self.setCurrentListLength(4);
+      self.currentListLength = 4;
     },
     setCurrentListLength() {
       self.currentListLength += 4;
     },
+    setSearchTarget(val) {
+      self.currentListLength = 4;
+      self.searchTarget = val;
+    },
   }))
   .views((self) => ({
+    searchedListLength() {
+      if (self.searchTarget !== "") {
+        let list = self.list.filter((rec) =>
+          rec.address.includes(self.searchTarget)
+        );
+        return list.length;
+      }
+      return 0;
+    },
     getList() {
-      return self.list.slice(0, self.currentListLength);
+      let list;
+      if (self.searchTarget !== "") {
+        list = self.list.filter((rec) =>
+          rec.address.toLowerCase().includes(self.searchTarget.toLowerCase())
+        );
+      } else {
+        list = self.list;
+      }
+      const res = list.slice(0, self.currentListLength);
+      console.log(res);
+      return res;
     },
   }))
   .create({
     list: [],
-    currentListLength: 0,
+    currentListLength: 4,
+    searchTarget: "",
   });
