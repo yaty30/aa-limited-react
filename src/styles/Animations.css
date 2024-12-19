@@ -39,6 +39,7 @@
 
 .search-bar-fade-in {
   opacity: 0;
+
   /* visibility: hidden; */
   transform: translateY(-60px);
   animation: searchBarFadeIn 1.5s ease-in-out forwards;
