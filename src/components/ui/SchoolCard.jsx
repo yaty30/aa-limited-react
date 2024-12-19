@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -9,8 +9,9 @@ import { observer } from "mobx-react-lite";
 import colors from "../../styles/colors";
 import { Divider, Grid2 as Grid } from "@mui/material";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const bull = (
   <Box
@@ -22,8 +23,52 @@ const bull = (
 );
 
 export default observer(() => {
+  const [saved, setSaved] = useState(false);
   return (
-    <Card elevation={0} sx={{ border: `1px solid ${colors.netural[100]}` }}>
+    <Card
+      elevation={0}
+      sx={{
+        border: `1px solid ${colors.netural[100]}`,
+        position: "relative",
+        borderRadius: "8px",
+      }}
+    >
+      <Box
+        sx={{
+          width: "100%",
+          height: "56px",
+          position: "absolute",
+        }}
+      >
+        {/* Bookmark Button */}
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: colors.netural[50],
+            color: colors.primary[600],
+            fontSize: 0,
+            width: 60,
+            height: 56,
+            position: "absolute",
+            top: 0,
+            right: 0,
+            boxShadow: "none",
+            borderRadius: "0 9px 0 8px",
+            "&:hover": {
+              boxShadow: "none",
+            },
+          }}
+          onClick={() => setSaved(!saved)}
+        >
+          {saved ? (
+            <BookmarkIcon sx={{ fontSize: 24 }} />
+          ) : (
+            <BookmarkBorderOutlinedIcon sx={{ fontSize: 24 }} />
+          )}
+        </Button>
+      </Box>
+
+      {/* Content Section */}
       <CardContent>
         <Typography variant="subtitle" color={colors.secondary[700]}>
           Facility Name
@@ -36,6 +81,7 @@ export default observer(() => {
           }}
         >
           <Grid container spacing={2} display="flex" alignItems="center">
+            {/* Address Section */}
             <Grid item size={{ xs: 12, md: 12, lg: 3 }}>
               <Box
                 sx={{
@@ -62,6 +108,8 @@ export default observer(() => {
                 <Typography variant="caption1">Address Text Here</Typography>
               </Box>
             </Grid>
+
+            {/* Last Updated Section */}
             <Grid item size={{ xs: 8, md: 4, lg: 2 }}>
               <Box
                 sx={{
@@ -97,6 +145,8 @@ export default observer(() => {
                 </Box>
               </Box>
             </Grid>
+
+            {/* Higher Education Section */}
             <Grid item size={{ xs: 12, md: "grow" }}>
               <Box
                 sx={{

@@ -90,12 +90,14 @@ export default observer(() => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              border: "1px solid #FEF3C7",
+              border: "1px solid #F59E0B",
               width: { md: "70%", lg: "100%" },
               borderRadius: 8,
               backdropFilter: "blur(24px)",
+              // borderImageSource:
+              //   "linear-gradient(110.43deg, #FEF3C7 26.89%, #F59E0B 79.56%)",
               position: "relative",
-              padding: '32px 82px',
+              padding: "32px 82px",
               zIndex: 11,
             }}
           >
