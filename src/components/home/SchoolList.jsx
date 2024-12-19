@@ -14,8 +14,12 @@ import { getData } from "../../apis/apis";
 import { schools } from "../../states/school";
 import { states } from "../../states/gloablStates";
 
+import "../../styles/Animations.css";
+
 export default observer(() => {
-  const moreDisable = schools.currentListLength >= schools.list.length;
+  const moreDisable = schools.searchTarget
+    ? schools.currentListLength >= schools.searchedListLength()
+    : schools.currentListLength >= schools.list.length;
   return (
     <Box
       sx={{
@@ -32,7 +36,12 @@ export default observer(() => {
         },
       }}
     >
-      <Grid container spacing={2} sx={{ width: "100%" }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ width: "100%" }}
+        className="school-list"
+      >
         <Grid item xs={12}>
           <Box
             sx={{
@@ -71,9 +80,12 @@ export default observer(() => {
               </>
             ))}
             <Grid item size={12}>
-              <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
                 {moreDisable ? (
-                  <Button disabled sx={{mt: 1}}> - End of list - </Button>
+                  <Button disabled sx={{ mt: 1 }}>
+                    {" "}
+                    - End of list -{" "}
+                  </Button>
                 ) : (
                   <Button
                     variant="contained"

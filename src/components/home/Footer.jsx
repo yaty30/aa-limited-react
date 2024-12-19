@@ -28,7 +28,7 @@ const TextLink = () => {
 
 export default observer(() => {
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 4, borderTop: `1px solid ${colors.netural[100]}`, pt: 3 }}>
       <Grid
         container
         spacing={4}

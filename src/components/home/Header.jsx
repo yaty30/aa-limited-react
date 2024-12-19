@@ -96,7 +96,7 @@ export default observer(() => {
   };
 
   return (
-    <>
+    <Box>
       <AppBar
         position="static"
         sx={{
@@ -174,6 +174,6 @@ export default observer(() => {
       <Box sx={{ display: { xs: "none", md: "block" } }}>
         <PageMenu />
       </Box>
-    </>
+    </Box>
   );
 });
