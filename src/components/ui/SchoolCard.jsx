@@ -9,6 +9,7 @@ import { observer } from "mobx-react-lite";
 import colors from "../../styles/colors";
 import { Divider, Grid2 as Grid } from "@mui/material";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
 const bull = (
@@ -35,7 +36,7 @@ export default observer(() => {
           }}
         >
           <Grid container spacing={2} display="flex" alignItems="center">
-            <Grid item size={{ xs: 12, md: 3 }}>
+            <Grid item size={{ xs: 12, md: 12, lg: 3 }}>
               <Box
                 sx={{
                   display: "flex",
@@ -61,13 +62,13 @@ export default observer(() => {
                 <Typography variant="caption1">Address Text Here</Typography>
               </Box>
             </Grid>
-            <Grid item size={{ xs: 12, md: 2 }}>
+            <Grid item size={{ xs: 8, md: 4, lg: 2 }}>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  height: 66,
+                  height: { xs: 44, md: 66 },
                   backgroundColor: colors.netural[50],
                   borderRadius: 2,
                   padding: "8px 16px",
@@ -87,7 +88,9 @@ export default observer(() => {
                   <CheckOutlinedIcon sx={{ color: "#22C55E" }} />
                 </Box>
                 <Box sx={{ ml: 2 }}>
-                  <Typography variant="caption2">Last Updated</Typography>
+                  <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                    <Typography variant="caption2">Last Updated</Typography>
+                  </Box>
                   <Typography variant="caption1">
                     <b>0000-00-00</b>
                   </Typography>

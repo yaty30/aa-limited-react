@@ -80,7 +80,7 @@ export default observer(() => {
         <Box
           id="search-bar-container"
           sx={{
-            display: { xs: "none", md: "flex" },
+            display: { xs: "none", sm: "none", md: "flex" },
             justifyContent: "center",
             width: "100%",
           }}
@@ -91,11 +91,11 @@ export default observer(() => {
               display: "flex",
               justifyContent: "center",
               border: "1px solid #FEF3C7",
-              width: 1264,
-              height: 120,
+              width: { md: "70%", lg: "100%" },
               borderRadius: 8,
               backdropFilter: "blur(24px)",
               position: "relative",
+              padding: '32px 82px',
               zIndex: 11,
             }}
           >
