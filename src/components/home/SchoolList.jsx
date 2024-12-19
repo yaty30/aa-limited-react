@@ -7,7 +7,9 @@ import {
   Tooltip,
   CircularProgress,
   Grid2 as Grid,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // Material-UI Icons
 import HelpIcon from "@mui/icons-material/Help";
@@ -30,6 +32,12 @@ const SchoolList = () => {
   const moreDisable = schools.searchTarget
     ? schools.currentListLength >= schools.searchedListLength()
     : schools.currentListLength >= schools.list.length;
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  // Helper function to handle responsive styles
+  const ismd = (mdStyle, otherStyle) => (isSmallScreen ? mdStyle : otherStyle);
 
   return (
     <Box
@@ -64,7 +72,9 @@ const SchoolList = () => {
               mb: 2,
             }}
           >
-            <Typography variant="heading2">Popular schools</Typography>
+            <Typography variant={ismd("heading3", "heading1")}>
+              Popular schools
+            </Typography>
             <Box sx={{ ml: 2 }}>
               <Tooltip
                 title="Here is the tooltip for additional information explanation"

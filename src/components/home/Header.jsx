@@ -20,6 +20,36 @@ import { routes } from "../../states/routes";
 const pages = ["Contact Us", "Login"];
 const items = ["Home", "About us", "Schools", "Media Highlights", "Help"];
 
+const LinkStyles = {
+  normal: {
+    mx: 3,
+    textTransform: "capitalize",
+    fontWeight: 600,
+    fontSize: 20,
+    color: colors.netural[800],
+    borderRadius: 0,
+    borderBottom: "2px solid transparent",
+    "&:hover": {
+      color: colors.primary[700],
+      borderBottomColor: colors.primary[600],
+      backgroundColor: "transparent",
+      height: "auto",
+    },
+  },
+  current: {
+    mx: 3,
+    textTransform: "capitalize",
+    fontWeight: 600,
+    fontSize: 20,
+    borderRadius: 0,
+    borderBottom: "2px solid",
+    color: colors.primary[700],
+    borderBottomColor: colors.primary[600],
+    backgroundColor: "transparent",
+    height: "auto",
+  },
+};
+
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -38,26 +68,16 @@ const Header = () => {
         alignItems: "center",
       }}
     >
-      {items.map((item) => (
+      {items.map((item, index) => (
         <Button
           key={item}
           variant="text"
-          onClick={() => routes.setCurrentPage(`/${item}`)}
-          sx={{
-            mx: 3,
-            textTransform: "capitalize",
-            fontWeight: 600,
-            fontSize: 20,
-            color: colors.netural[800],
-            borderRadius: 0,
-            borderBottom: "2px solid transparent",
-            "&:hover": {
-              color: colors.primary[700],
-              borderBottomColor: colors.primary[600],
-              backgroundColor: "transparent",
-              height: "auto",
-            },
-          }}
+          onClick={() => routes.setCurrentPage(index)}
+          sx={
+            index === routes.currentPage
+              ? LinkStyles.current
+              : LinkStyles.normal
+          }
         >
           {item}
         </Button>

@@ -131,7 +131,9 @@ const SchoolCard = ({ data }) => {
                     sx={{ fontSize: 32, color: colors.primary[600] }}
                   />
                 </Box>
-                <Typography variant="caption1">{data.address}</Typography>
+                <Typography variant="caption1" color={colors.netural[600]}>
+                  {data.address}
+                </Typography>
               </Box>
             </Grid>
 
