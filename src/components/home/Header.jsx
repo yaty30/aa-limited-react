@@ -24,7 +24,6 @@ const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   // Menu Handlers
-  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   // Page Menu Component
