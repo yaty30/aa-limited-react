@@ -11,8 +11,12 @@ import SearchBar from "../components/home/SearchBar";
 import SchoolList from "../components/home/SchoolList";
 import Footer from "../components/home/Footer";
 import MyList from "../components/home/MyList";
+import { getData } from "../apis/apis";
 
 export default observer(() => {
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
       <MyList />

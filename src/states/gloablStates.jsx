@@ -41,14 +41,19 @@ export const language = types
 export const states = types
   .model({
     responsiveMenuOpen: types.boolean,
+    getDataLoading: types.boolean,
   })
   .actions((self) => ({
     toggleResponsiveMenu() {
       self.responsiveMenuOpen = !self.responsiveMenuOpen;
     },
+    toggleGetDataLoading(status) {
+      self.getDataLoading = status;
+    },
   }))
   .create({
     responsiveMenuOpen: false,
+    getDataLoading: false,
   });
 
 export const searchSchool = types

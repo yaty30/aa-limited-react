@@ -4,14 +4,18 @@ import HelpIcon from "@mui/icons-material/Help";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import AddIcon from "@mui/icons-material/Add";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { observer } from "mobx-react-lite";
 import SchoolCard from "../ui/SchoolCard";
 import Typography from "../ui/Typography";
 import colors from "../../styles/colors";
 import { getData } from "../../apis/apis";
+import { schools } from "../../states/school";
+import { states } from "../../states/gloablStates";
 
 export default observer(() => {
+  const moreDisable = schools.currentListLength >= schools.list.length;
   return (
     <Box
       sx={{
@@ -53,32 +57,47 @@ export default observer(() => {
             </Box>
           </Box>
         </Grid>
-        {["A", "B", "C", "D"].map((item, index) => (
-          <Grid item size={12} key={index}>
-            <SchoolCard />
+        {states.getDataLoading ? (
+          <Grid item size={12} display="flex" justifyContent="center">
+            <CircularProgress sx={{ color: colors.primary[700] }} />
           </Grid>
-        ))}
-        <Grid item size={12}>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={<AddIcon />}
-              sx={{
-                backgroundColor: colors.netural.white,
-                color: colors.primary[700],
-                fontWeight: 600,
-                border: `1px solid ${colors.primary[700]}`,
-                boxShadow: "none",
-              }}
-              onClick={() => {
-                getData();
-              }}
-            >
-              More
-            </Button>
-          </Box>
-        </Grid>
+        ) : (
+          <>
+            {schools.getList().map((item, index) => (
+              <>
+                <Grid item size={12} key={index}>
+                  <SchoolCard data={item} />
+                </Grid>
+              </>
+            ))}
+            <Grid item size={12}>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                {moreDisable ? (
+                  <Button disabled sx={{mt: 1}}> - End of list - </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={<AddIcon />}
+                    sx={{
+                      backgroundColor: colors.netural.white,
+                      color: colors.primary[700],
+                      fontWeight: 600,
+                      border: `1px solid ${colors.primary[700]}`,
+                      boxShadow: "none",
+                    }}
+                    disabled={moreDisable}
+                    onClick={() => {
+                      schools.setCurrentListLength();
+                    }}
+                  >
+                    More
+                  </Button>
+                )}
+              </Box>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Box>
   );

@@ -22,7 +22,7 @@ const bull = (
   </Box>
 );
 
-export default observer(() => {
+export default observer(({ data }) => {
   const [saved, setSaved] = useState(false);
   return (
     <Card
@@ -31,6 +31,10 @@ export default observer(() => {
         border: `1px solid ${colors.netural[100]}`,
         position: "relative",
         borderRadius: "8px",
+        transition: "ease-in-out 0.1s",
+        "&:hover": {
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+        },
       }}
     >
       <Box
@@ -71,7 +75,7 @@ export default observer(() => {
       {/* Content Section */}
       <CardContent>
         <Typography variant="subtitle" color={colors.secondary[700]}>
-          Facility Name
+          {data.facilityName}
         </Typography>
 
         <Box
@@ -82,7 +86,7 @@ export default observer(() => {
         >
           <Grid container spacing={2} display="flex" alignItems="center">
             {/* Address Section */}
-            <Grid item size={{ xs: 12, md: 12, lg: 3 }}>
+            <Grid item size={{ xs: 12, md: 12, lg: 6 }}>
               <Box
                 sx={{
                   display: "flex",
@@ -97,15 +101,15 @@ export default observer(() => {
                     alignItems: "center",
                     justifyContent: "center",
                     height: "66px",
-                    width: "66px",
+                    minWidth: "66px",
                     borderRadius: "4px",
                     backgroundColor: colors.primary[50],
                     mr: 1,
                   }}
                 >
-                  <MapOutlinedIcon sx={{ fontSize: 32 }} />
+                  <MapOutlinedIcon sx={{ fontSize: 32, color: colors.primary[600] }} />
                 </Box>
-                <Typography variant="caption1">Address Text Here</Typography>
+                <Typography variant="caption1">{data.address}</Typography>
               </Box>
             </Grid>
 
@@ -140,7 +144,7 @@ export default observer(() => {
                     <Typography variant="caption2">Last Updated</Typography>
                   </Box>
                   <Typography variant="caption1">
-                    <b>0000-00-00</b>
+                    <b>{data.lastUpdate}</b>
                   </Typography>
                 </Box>
               </Box>
@@ -166,7 +170,7 @@ export default observer(() => {
                   ●
                 </span>
                 <Typography variant="caption2" color={colors.primary[600]}>
-                  Higher Education Institutions
+                  {data.dataset}
                 </Typography>
               </Box>
             </Grid>
