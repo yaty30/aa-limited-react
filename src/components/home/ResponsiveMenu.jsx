@@ -1,32 +1,47 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { IconButton } from "@mui/material";
-import { observer } from "mobx-react-lite";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import { observer } from "mobx-react-lite";
 import LanguageMenu from "./LanguageMenu";
 import { language } from "../../states/gloablStates";
 
-export default observer(({ pages }) => {
-  const [open, setOpen] = React.useState(false);
+const DrawerComponent = ({ pages }) => {
+  const [open, setOpen] = useState(false);
 
+  // Toggle Drawer Open/Close
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  React.useEffect(() => {
+  // Close Drawer when language changes
+  useEffect(() => {
     setOpen(false);
   }, [language.currentLang]);
 
+  // Render List Items
+  const renderListItems = () =>
+    pages.map((text, index) => (
+      <ListItem key={text} disablePadding>
+        <ListItemButton onClick={toggleDrawer(false)}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary={text} />
+        </ListItemButton>
+      </ListItem>
+    ));
+
+  // Drawer List Component
   const DrawerList = (
     <Box
       sx={{
@@ -38,19 +53,10 @@ export default observer(({ pages }) => {
       }}
       role="presentation"
     >
-      <List>
-        {pages.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {/* Navigation Links */}
+      <List>{renderListItems()}</List>
 
+      {/* Language Menu */}
       <Box sx={{ p: 2 }}>
         <LanguageMenu arrow="up" />
       </Box>
@@ -58,10 +64,11 @@ export default observer(({ pages }) => {
   );
 
   return (
-    <div>
+    <>
+      {/* Menu Button */}
       <IconButton
         size="large"
-        aria-label="account of current user"
+        aria-label="open drawer"
         aria-controls="menu-appbar"
         aria-haspopup="true"
         onClick={toggleDrawer(true)}
@@ -70,9 +77,12 @@ export default observer(({ pages }) => {
         <MenuIcon />
       </IconButton>
 
+      {/* Drawer */}
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
-    </div>
+    </>
   );
-});
+};
+
+export default observer(DrawerComponent);

@@ -1,16 +1,15 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import React from "react";
+import { Box } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-
 import { observer } from "mobx-react-lite";
+
+// Styles
 import colors from "../../styles/colors";
 
-export default observer(() => {
+const MyListButton = () => {
   return (
     <Box
       sx={{
-        "& > :not(style)": { m: 1 },
         position: "fixed",
         zIndex: 99,
         bottom: 10,
@@ -18,7 +17,6 @@ export default observer(() => {
       }}
     >
       <Box
-        color="primary"
         aria-label="add"
         sx={{
           width: 60,
@@ -28,13 +26,12 @@ export default observer(() => {
           justifyContent: "center",
           alignItems: "center",
           boxShadow: 3,
-          fontSize: 0,
-          fontKerning: 2,
           borderRadius: "8px",
+          fontSize: 0,
           transition: "ease-in-out 0.1s",
           "&:hover": {
-            cursor: "pointer",
             fontSize: 20,
+            cursor: "pointer",
             width: 150,
           },
         }}
@@ -44,4 +41,6 @@ export default observer(() => {
       </Box>
     </Box>
   );
-});
+};
+
+export default observer(MyListButton);

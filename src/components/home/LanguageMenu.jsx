@@ -1,41 +1,39 @@
-import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { observer } from "mobx-react-lite";
-// import { useTranslation } from "react-i18next";
-
+import React, { useState } from "react";
+import { Button, Menu, MenuItem } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { observer } from "mobx-react-lite";
 
-// state
+// State
 import { language } from "../../states/gloablStates";
 
-// styles
+// Styles
 import colors from "../../styles/colors";
 
-export default observer(({ arrow }) => {
-  //   const { t, i18n } = useTranslation();
-
+const LanguageMenu = ({ arrow }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  // Handlers
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleChange = (lang) => {
-    language.setCurrentLang(lang);
-    // i18n.changeLanguage(language.getCurrentLanguage());
-    handleClose();
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const handleChange = (lang) => {
+    language.setCurrentLang(lang);
+    // Uncomment the following line if `i18n` is integrated
+    // i18n.changeLanguage(language.getCurrentLanguage());
+    handleClose();
+  };
+
   return (
     <div>
+      {/* Language Menu Button */}
       <Button
         id="lang-menu-button"
         aria-haspopup="true"
@@ -61,6 +59,8 @@ export default observer(({ arrow }) => {
       >
         {language.getCurrentLanguage()}
       </Button>
+
+      {/* Language Selection Menu */}
       <Menu
         id="lang-menu"
         anchorEl={anchorEl}
@@ -80,11 +80,10 @@ export default observer(({ arrow }) => {
         }}
       >
         {language.languages
-          .filter((lang) => lang.id !== language.currentLang) // Exclude currentLang
+          .filter((lang) => lang.id !== language.currentLang) // Exclude the current language
           .map((lang) => (
             <MenuItem
-              value={lang.id}
-              key={lang.name}
+              key={lang.id}
               onClick={() => handleChange(lang.id)}
               sx={{
                 display: "flex",
@@ -98,4 +97,6 @@ export default observer(({ arrow }) => {
       </Menu>
     </div>
   );
-});
+};
+
+export default observer(LanguageMenu);

@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-import { Box, Grid2 as Grid } from "@mui/material";
-import HelpIcon from "@mui/icons-material/Help";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import AddIcon from "@mui/icons-material/Add";
-import CircularProgress from "@mui/material/CircularProgress";
+import React from "react";
 
+// Material-UI Components
+import {
+  Box,
+  Button,
+  Tooltip,
+  CircularProgress,
+  Grid2 as Grid,
+} from "@mui/material";
+
+// Material-UI Icons
+import HelpIcon from "@mui/icons-material/Help";
+import AddIcon from "@mui/icons-material/Add";
+
+// MobX
 import { observer } from "mobx-react-lite";
+
+// Custom Components
 import SchoolCard from "../ui/SchoolCard";
 import Typography from "../ui/Typography";
+
+// Styles and State
 import colors from "../../styles/colors";
-import { getData } from "../../apis/apis";
 import { schools } from "../../states/school";
 import { states } from "../../states/gloablStates";
 
-
-export default observer(() => {
+const SchoolList = () => {
+  // Determine if the "More" button should be disabled
   const moreDisable = schools.searchTarget
     ? schools.currentListLength >= schools.searchedListLength()
     : schools.currentListLength >= schools.list.length;
+
   return (
     <Box
       sx={{
@@ -41,6 +53,7 @@ export default observer(() => {
         sx={{ width: "100%" }}
         className="school-list"
       >
+        {/* Title Section */}
         <Grid item xs={12}>
           <Box
             sx={{
@@ -65,25 +78,27 @@ export default observer(() => {
             </Box>
           </Box>
         </Grid>
+
+        {/* Loading State */}
         {states.getDataLoading ? (
           <Grid item size={12} display="flex" justifyContent="center">
             <CircularProgress sx={{ color: colors.primary[700] }} />
           </Grid>
         ) : (
           <>
+            {/* School Cards */}
             {schools.getList().map((item, index) => (
-              <>
-                <Grid item size={12} key={index}>
-                  <SchoolCard data={item} />
-                </Grid>
-              </>
+              <Grid item size={12} key={index}>
+                <SchoolCard data={item} />
+              </Grid>
             ))}
+
+            {/* "More" Button or End of List Message */}
             <Grid item size={12}>
               <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
                 {moreDisable ? (
                   <Button disabled sx={{ mt: 1 }}>
-                    {" "}
-                    - End of list -{" "}
+                    - End of list -
                   </Button>
                 ) : (
                   <Button
@@ -97,7 +112,6 @@ export default observer(() => {
                       border: `1px solid ${colors.primary[700]}`,
                       boxShadow: "none",
                     }}
-                    disabled={moreDisable}
                     onClick={() => {
                       schools.setCurrentListLength();
                     }}
@@ -112,4 +126,6 @@ export default observer(() => {
       </Grid>
     </Box>
   );
-});
+};
+
+export default observer(SchoolList);

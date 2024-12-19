@@ -1,102 +1,74 @@
-import * as React from "react";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Avatar,
-  Button,
-  Tooltip,
-  MenuItem,
-} from "@mui/material";
+import React, { useState } from "react";
+import { AppBar, Box, Toolbar, Button, Container } from "@mui/material";
 
-// icons
-import MenuIcon from "@mui/icons-material/Menu";
+// Icons
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LoginIcon from "@mui/icons-material/Login";
 
-// components
+// Components
 import LanguageMenu from "./LanguageMenu";
 import ResponsiveMenu from "./ResponsiveMenu";
 
-// styles
+// Styles
 import { header } from "../../styles/Common";
 import colors from "../../styles/colors";
 
-// states
+// States
 import { observer } from "mobx-react-lite";
-import { states } from "../../states/gloablStates";
 import { routes } from "../../states/routes";
 
 const pages = ["Contact Us", "Login"];
 const items = ["Home", "About us", "Schools", "Media Highlights", "Help"];
 
-export default observer(() => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+const Header = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // Menu Handlers
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const PageMenu = () => {
-    return (
-      <Box
-        sx={{
-          backgroundColor: colors.primary[50],
-          width: "100%",
-          flex: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {items.map((item, index) => (
-          <Button
-            variant="text"
-            key={item}
-            onClick={() => {
-              routes.setCurrentPage(`/${item}`);
-            }}
-            sx={{
-              mx: 3,
-              textTransform: "capitalize",
-              fontWeight: 600,
-              fontSize: 20,
-              color: colors.netural[800],
-              borderRadius: 0,
-              borderBottom: "2px solid transparent",
-              "&:hover": {
-                color: colors.primary[700],
-                borderBottomColor: colors.primary[600],
-                backgroundColor: "transparent",
-                height: "auto",
-              },
-            }}
-          >
-            {item}
-          </Button>
-        ))}
-      </Box>
-    );
-  };
+  // Page Menu Component
+  const PageMenu = () => (
+    <Box
+      sx={{
+        backgroundColor: colors.primary[50],
+        width: "100%",
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {items.map((item) => (
+        <Button
+          key={item}
+          variant="text"
+          onClick={() => routes.setCurrentPage(`/${item}`)}
+          sx={{
+            mx: 3,
+            textTransform: "capitalize",
+            fontWeight: 600,
+            fontSize: 20,
+            color: colors.netural[800],
+            borderRadius: 0,
+            borderBottom: "2px solid transparent",
+            "&:hover": {
+              color: colors.primary[700],
+              borderBottomColor: colors.primary[600],
+              backgroundColor: "transparent",
+              height: "auto",
+            },
+          }}
+        >
+          {item}
+        </Button>
+      ))}
+    </Box>
+  );
 
   return (
     <Box className="header-fade-in">
+      {/* AppBar Section */}
       <AppBar
         position="static"
         sx={{
@@ -107,10 +79,12 @@ export default observer(() => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* Responsive, window size: md */}
+            {/* Logo for md+ screens */}
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <img src="/assets/images/Logo.png" style={header.logo.md} />
             </Box>
+
+            {/* Responsive Menu for xs screens */}
             <Box
               sx={{
                 flexGrow: 1,
@@ -118,11 +92,10 @@ export default observer(() => {
                 position: "absolute",
               }}
             >
-              {/* Responsive, window size: xs */}
               <ResponsiveMenu pages={items} />
             </Box>
 
-            {/* Responsive, window size: xs */}
+            {/* Centered Logo for xs screens */}
             <Box
               sx={{
                 display: { xs: "flex", md: "none" },
@@ -132,7 +105,7 @@ export default observer(() => {
               <img src="/assets/images/Logo.png" style={header.logo.xs} />
             </Box>
 
-            {/* Responsive, window size: md */}
+            {/* Navigation for md+ screens */}
             <Box
               sx={{
                 flexGrow: 1,
@@ -141,10 +114,12 @@ export default observer(() => {
                 display: { xs: "none", md: "flex" },
               }}
             >
-              <Box sx={{ my: 2, color: "white", display: "block", mx: 2 }}>
+              {/* Language Menu */}
+              <Box sx={{ my: 2, mx: 2 }}>
                 <LanguageMenu arrow="down" />
               </Box>
 
+              {/* Contact Us and Login Buttons */}
               {pages.map((page, index) => (
                 <Button
                   key={index}
@@ -171,9 +146,13 @@ export default observer(() => {
         </Container>
       </AppBar>
 
+      {/* Page Menu for md+ screens */}
       <Box sx={{ display: { xs: "none", md: "block" } }}>
         <PageMenu />
       </Box>
     </Box>
   );
-});
+};
+
+// Wrap the component with observer
+export default observer(Header);

@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 
+// MobX
 import { observer } from "mobx-react-lite";
-import { Box, Grid2 as Grid, Button, IconButton } from "@mui/material";
-import SchoolCard from "../ui/SchoolCard";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+
+// Material-UI Components
+import {
+  Box,
+  Grid2 as Grid,
+  Button,
+  IconButton,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
+
+// Material-UI Icons
 import SearchIcon from "@mui/icons-material/Search";
-import colors from "../../styles/colors";
 import CancelIcon from "@mui/icons-material/Cancel";
 
+// Custom Components and Styles
+import colors from "../../styles/colors";
+
+// Global States
 import { searchSchool } from "../../states/gloablStates";
 import { schools } from "../../states/school";
 
-export default observer(() => {
+const SearchBar = () => {
   const [target, setTarget] = useState("");
 
+  // Handle search when the "Search" button or Enter key is pressed
   const handleSearch = () => {
     schools.setSearchTarget(target);
   };
 
+  // Clear the search input and reset the search state
   const handleClear = () => {
     setTarget("");
     schools.setSearchTarget("");
   };
+
   return (
     <Box
       id="search-bar-section-container"
@@ -45,6 +56,7 @@ export default observer(() => {
           width: "100%",
         }}
       >
+        {/* Search Bar Backdrop */}
         <Box
           id="search-bar-backdrop"
           sx={{
@@ -54,8 +66,6 @@ export default observer(() => {
             width: { md: "70%", lg: "100%" },
             borderRadius: 8,
             backdropFilter: "blur(24px)",
-            // borderImageSource:
-            //   "linear-gradient(110.43deg, #FEF3C7 26.89%, #F59E0B 79.56%)",
             position: "relative",
             padding: "32px 82px",
             zIndex: 11,
@@ -73,9 +83,13 @@ export default observer(() => {
             alignItems="center"
             justifyContent="center"
           >
+            {/* Search Input Field */}
             <Grid item size={10}>
               <TextField
-                sx={{ width: "100%", backgroundColor: colors.netural.white }}
+                sx={{
+                  width: "100%",
+                  backgroundColor: colors.netural.white,
+                }}
                 id="input-with-icon-textfield"
                 placeholder="Search School Address"
                 value={target}
@@ -84,32 +98,31 @@ export default observer(() => {
                   if (val) {
                     setTarget(e.target.value);
                   } else {
-                    setTarget("");
-                    schools.setSearchTarget("");
+                    handleClear();
                   }
                 }}
                 onKeyDown={(e) => {
-                  e.key == "Enter" && handleSearch();
+                  if (e.key === "Enter") handleSearch();
                 }}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon sx={{ color: colors.primary[600] }} />
-                      </InputAdornment>
-                    ),
-                    endAdornment: schools.searchTarget && (
-                      <InputAdornment position="start">
-                        <IconButton size="small" onClick={handleClear}>
-                          <CancelIcon sx={{ color: colors.netural[300] }} />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  },
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon sx={{ color: colors.primary[600] }} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: target && (
+                    <InputAdornment position="start">
+                      <IconButton size="small" onClick={handleClear}>
+                        <CancelIcon sx={{ color: colors.netural[300] }} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 }}
                 variant="outlined"
               />
             </Grid>
+
+            {/* Search Button */}
             <Grid item size={2}>
               <Button
                 variant="contained"
@@ -131,4 +144,6 @@ export default observer(() => {
       </Box>
     </Box>
   );
-});
+};
+
+export default observer(SearchBar);

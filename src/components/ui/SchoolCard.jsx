@@ -1,29 +1,24 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "./Typography";
-import { observer } from "mobx-react-lite";
-import colors from "../../styles/colors";
-import { Divider, Grid2 as Grid } from "@mui/material";
+
+// Material-UI Components
+import { Box, Card, CardContent, Button, Grid2 as Grid } from "@mui/material";
+
+// Material-UI Icons
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+// MobX
+import { observer } from "mobx-react-lite";
 
-export default observer(({ data }) => {
+// Custom Components and Styles
+import Typography from "./Typography";
+import colors from "../../styles/colors";
+
+const SchoolCard = ({ data }) => {
   const [saved, setSaved] = useState(false);
+
   return (
     <Card
       elevation={0}
@@ -37,6 +32,7 @@ export default observer(({ data }) => {
         },
       }}
     >
+      {/* Bookmark Button */}
       <Box
         sx={{
           width: "100%",
@@ -44,7 +40,6 @@ export default observer(({ data }) => {
           position: "absolute",
         }}
       >
-        {/* Bookmark Button */}
         <Button
           variant="contained"
           sx={{
@@ -72,12 +67,14 @@ export default observer(({ data }) => {
         </Button>
       </Box>
 
-      {/* Content Section */}
+      {/* Card Content */}
       <CardContent>
+        {/* Facility Name */}
         <Typography variant="subtitle" color={colors.secondary[700]}>
           {data.facilityName}
         </Typography>
 
+        {/* Details Section */}
         <Box
           sx={{
             mt: 3,
@@ -107,7 +104,9 @@ export default observer(({ data }) => {
                     mr: 1,
                   }}
                 >
-                  <MapOutlinedIcon sx={{ fontSize: 32, color: colors.primary[600] }} />
+                  <MapOutlinedIcon
+                    sx={{ fontSize: 32, color: colors.primary[600] }}
+                  />
                 </Box>
                 <Typography variant="caption1">{data.address}</Typography>
               </Box>
@@ -179,4 +178,6 @@ export default observer(({ data }) => {
       </CardContent>
     </Card>
   );
-});
+};
+
+export default observer(SchoolCard);
