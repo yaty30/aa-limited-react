@@ -14,7 +14,6 @@ import { getData } from "../../apis/apis";
 import { schools } from "../../states/school";
 import { states } from "../../states/gloablStates";
 
-import "../../styles/Animations.css";
 
 export default observer(() => {
   const moreDisable = schools.searchTarget

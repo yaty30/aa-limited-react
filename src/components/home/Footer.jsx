@@ -35,6 +35,7 @@ export default observer(() => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        className="footer-fade-in"
       >
         <Grid
           item

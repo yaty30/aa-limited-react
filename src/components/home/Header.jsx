@@ -96,7 +96,7 @@ export default observer(() => {
   };
 
   return (
-    <Box>
+    <Box className="header-fade-in">
       <AppBar
         position="static"
         sx={{

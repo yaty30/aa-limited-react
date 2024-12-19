@@ -14,23 +14,15 @@ export default observer(() => {
       sx={{
         position: "relative",
         width: "100%",
-        height: { xs: "auto", md: "620px", lg: "720px" }, // Responsive height
-        backgroundImage: `url("${backgroundImage}")`, // Set the image as background
-        backgroundSize: "cover", // Make the image cover the entire Box
-        backgroundPosition: "center", // Center the image
-        backgroundRepeat: "no-repeat", // Prevent the image from repeating
-        zIndex: 0, // Ensure this is behind other elements
+        height: { xs: "auto", md: "620px", lg: "720px" },
+        backgroundImage: `url("${backgroundImage}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        zIndex: 0,
       }}
+      className="hero-fade-in"
     >
-      {/* <img
-        src={backgroundImage}
-        style={{
-          position: "absolute",
-          zIndex: 0,
-          height: { xs: "auto", md: "620px" },
-        }}
-      /> */}
-      {/* Content Box */}
       <Box sx={{ padding: "0 60px" }}>
         <Grid
           container
@@ -38,13 +30,12 @@ export default observer(() => {
           sx={{
             position: "relative",
             zIndex: 1,
-            //   backgroundColor: "lightblue",
             height: "620px",
             display: "flex",
             alignItems: "center",
           }}
         >
-          <Grid item size={{ xs: 12 }}>
+          <Grid item size={{ xs: 12 }} className="hero-text-fade-in">
             <Box sx={{ maxWidth: 640 }}>
               <Box sx={{ my: 1 }}>
                 <Typography variant="subtitle">

@@ -19,7 +19,7 @@ export default observer(() => {
           bottom: 90,
         }}
       >
-        <Box sx={{ position: "absolute" }}>
+        <Box sx={{ position: "absolute", zIndex: 10 }} className="search-bar-fade-in">
           <SearchBar />
         </Box>
         <Box
@@ -30,6 +30,7 @@ export default observer(() => {
             flexDirection: "row-reverse",
             padding: "10px",
           }}
+          className="start-background-fade-in"
         >
           <img src="/assets/images/Background image.png" />
         </Box>

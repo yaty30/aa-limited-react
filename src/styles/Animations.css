@@ -1,7 +1,7 @@
 .school-list {
   opacity: 0;
   animation: schoolListFadeIn 1.6s ease-in-out forwards;
-  animation-delay: 0.8s;
+  animation-delay: 1.6s;
 }
 
 .header-fade-in {
@@ -10,13 +10,47 @@
   animation-delay: 0.4s;
 }
 
+.hero-fade-in {
+  opacity: 0;
+  animation: heroFadeIn 1.6s ease-in-out forwards;
+  animation-delay: 0.8s;
+}
+
+.hero-text-fade-in {
+  opacity: 0;
+  transform: translateY(-120px);
+  animation: heroTextFadeIn 2s ease-in-out forwards;
+  animation-delay: 0.4s;
+}
+
+.search-bar-fade-in {
+  opacity: 0;
+  transform: translateY(-60px);
+  animation: searchBarFadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1.3s;
+}
+
+.start-background-fade-in {
+  opacity: 0;
+  transform: translateY(-40px);
+  transform: translateX(40px);
+  animation: backgroundStartImageFadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1.3s;
+}
+
+.footer-fade-in {
+  opacity: 0;
+  animation: footerFadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1s;
+}
+
 @keyframes schoolListFadeIn {
   0% {
-    transform: translateY(120px); /* Start 28px lower */
+    transform: translateY(60px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Move to original position */
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -32,33 +66,55 @@
 
 @keyframes heroFadeIn {
   0% {
-    transform: translateY(120px); /* Start 28px lower */
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+  }
+}
+
+@keyframes heroTextFadeIn {
+  0% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes searchBarFadeIn {
   0% {
-    transform: translateY(120px); /* Start 28px lower */
+    transform: translateY(-60px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Move to original position */
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes backgroundStartImageFadeIn {
   0% {
-    transform: translateY(120px); /* Start 28px lower */
+    transform: translateY(-40px);
+    transform: translateX(40px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Move to original position */
+    transform: translateY(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes footerFadeIn {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
     opacity: 1;
   }
 }
