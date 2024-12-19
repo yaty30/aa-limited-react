@@ -10,10 +10,12 @@ import { observer } from "mobx-react-lite";
 import SearchBar from "../components/home/SearchBar";
 import SchoolList from "../components/home/SchoolList";
 import Footer from "../components/home/Footer";
+import MyList from "../components/home/MyList";
 
 export default observer(() => {
   return (
     <>
+      <MyList />
       <Grid container spacing={0}>
         <Grid item size={12}>
           <Header />

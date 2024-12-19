@@ -9,6 +9,7 @@ import { observer } from "mobx-react-lite";
 import SchoolCard from "../ui/SchoolCard";
 import Typography from "../ui/Typography";
 import colors from "../../styles/colors";
+import { getData } from "../../apis/apis";
 
 export default observer(() => {
   return (
@@ -22,8 +23,8 @@ export default observer(() => {
         bottom: 90,
         alignItems: "stretch",
         padding: {
-            xs: "40px",
-            sm: "80px"
+          xs: "40px",
+          sm: "80px",
         },
       }}
     >
@@ -69,6 +70,9 @@ export default observer(() => {
                 fontWeight: 600,
                 border: `1px solid ${colors.primary[700]}`,
                 boxShadow: "none",
+              }}
+              onClick={() => {
+                getData();
               }}
             >
               More
