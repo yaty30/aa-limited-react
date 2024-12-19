@@ -21,7 +21,6 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import colors from "../../styles/colors";
 
 // Global States
-import { searchSchool } from "../../states/gloablStates";
 import { schools } from "../../states/school";
 
 const SearchBar = () => {
@@ -42,7 +41,6 @@ const SearchBar = () => {
     <Box
       id="search-bar-section-container"
       sx={{
-        backgroundColor: "transparent",
         position: "relative",
         top: -70,
         zIndex: 10,
@@ -65,7 +63,13 @@ const SearchBar = () => {
             border: "1px solid #F59E0B",
             width: { md: "70%", lg: "100%" },
             borderRadius: 8,
-            backdropFilter: "blur(24px)",
+
+            // the backdrop-filter: blur cannot be applied because the fade-in transition requires opacity to control the effect.
+            // however, using opacity interferes with the backdrop-filter, causing it to stop functioning.
+            // refer to: src/styles/Animations.css -> .search-bar-fade-in
+            // backdropFilter: "blur(24px)",
+
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
             position: "relative",
             padding: "32px 82px",
             zIndex: 11,

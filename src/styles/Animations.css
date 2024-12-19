@@ -23,13 +23,6 @@
   animation-delay: 0.4s;
 }
 
-.search-bar-fade-in {
-  opacity: 0;
-  transform: translateY(-60px);
-  animation: searchBarFadeIn 1.5s ease-in-out forwards;
-  animation-delay: 1.3s;
-}
-
 .start-background-fade-in {
   opacity: 0;
   transform: translateY(-40px);
@@ -42,6 +35,14 @@
   opacity: 0;
   animation: footerFadeIn 1.5s ease-in-out forwards;
   animation-delay: 1s;
+}
+
+.search-bar-fade-in {
+  opacity: 0;
+  /* visibility: hidden; */
+  transform: translateY(-60px);
+  animation: searchBarFadeIn 1.5s ease-in-out forwards;
+  animation-delay: 1.3s;
 }
 
 @keyframes schoolListFadeIn {
@@ -86,12 +87,14 @@
 
 @keyframes searchBarFadeIn {
   0% {
-    transform: translateY(-60px);
+    /* visibility: hidden; */
     opacity: 0;
+    transform: translateY(-60px);
   }
   100% {
-    transform: translateY(0);
+    /* visibility: visible; */
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
