@@ -86,7 +86,7 @@ const typographyStyles = {
   },
 };
 
-const Typography = ({ variant, children, color }) => {
+const Typography = ({ variant, children, color, incomingStyle }) => {
   // Pick the styles for the given variant
   const style = typographyStyles[variant] || typographyStyles.body1;
 
@@ -94,6 +94,7 @@ const Typography = ({ variant, children, color }) => {
     <MuiTypography
       style={{
         ...style,
+        ...(incomingStyle || {}),
         color: color ? color : colors.netural.black, // Default to black if no color is provided
       }}
     >

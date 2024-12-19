@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 
 // Material-UI Components
-import { Box, Card, CardContent, Button, Grid2 as Grid } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  Grid2 as Grid,
+  useMediaQuery,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // Material-UI Icons
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
@@ -18,6 +26,12 @@ import colors from "../../styles/colors";
 
 const SchoolCard = ({ data }) => {
   const [saved, setSaved] = useState(false);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  // Helper function to handle responsive styles
+  const ismd = (mdStyle, otherStyle) => (isSmallScreen ? mdStyle : otherStyle);
 
   return (
     <Card
@@ -69,11 +83,20 @@ const SchoolCard = ({ data }) => {
 
       {/* Card Content */}
       <CardContent>
-        {/* Facility Name */}
-        <Typography variant="subtitle" color={colors.secondary[700]}>
-          {data.facilityName}
-        </Typography>
-
+        <Box sx={{ maxWidth: "80%" }}>
+          {/* Facility Name */}
+          <Typography
+            variant={ismd("label1", "subtitle")}
+            color={colors.secondary[700]}
+            style={{
+              wordBreak: "break-word", // Ensures text breaks if it's too long
+              overflowWrap: "break-word", // Ensures consistent wrapping for long words
+              whiteSpace: "normal", // Allows wrapping of text onto new lines
+            }}
+          >
+            {data.facilityName}
+          </Typography>
+        </Box>
         {/* Details Section */}
         <Box
           sx={{
